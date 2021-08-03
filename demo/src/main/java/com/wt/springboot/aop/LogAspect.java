@@ -22,7 +22,7 @@ public class LogAspect {
      * 此处的切点是注解的方式，也可以用包名的方式达到相同的效果
      * '@Pointcut("execution(* com.wwj.springboot.service.impl.*.*(..))")'
      */
-    @Pointcut("@annotation(com.wwj.springboot.annotation.OperationLogDetail)")
+    @Pointcut("@annotation(com.wt.springboot.annotation.OperationLogDetail)")
     public void operationLog() {
     }
 
