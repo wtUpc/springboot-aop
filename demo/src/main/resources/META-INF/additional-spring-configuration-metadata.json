@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.redis.jedis.timeout",
+      "type": "java.lang.String",
+      "description": "Description for spring.redis.jedis.timeout."
+  }
+] }
