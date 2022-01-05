@@ -25,3 +25,4 @@ hs_err_pid*
 /demo/target/classes/
 /demo/demo.iml
 /springboot-aop.iml
+/sp-main/target/

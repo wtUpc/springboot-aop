@@ -33,7 +33,7 @@ public class TestJwtStater {
         String reuslt = "";
         Map map = new HashMap();
         map.put("user", "赵刚");
-        System.out.println(jwtService.createPersonToken(map, "1402753117", 200));
+//        System.out.println(jwtService.createPersonToken(map, "1402753117", 200));
         return reuslt;
     }
 

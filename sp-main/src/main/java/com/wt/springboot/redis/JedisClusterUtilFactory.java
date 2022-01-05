@@ -59,6 +59,7 @@ public class JedisClusterUtilFactory implements FactoryBean<JedisCluster>, Initi
                 properties.getPassword(),
                 poolConfig
         );
+
     }
 
     /**
