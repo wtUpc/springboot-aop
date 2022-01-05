@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
+import redis.clients.jedis.Connection;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPoolConfig;
@@ -31,7 +32,7 @@ public class JedisClusterUtilFactory implements FactoryBean<JedisCluster>, Initi
 
     private Resource resource;
     private JedisCluster jedisCluster;
-    private GenericObjectPoolConfig poolConfig;
+//    private GenericObjectPoolConfig poolConfig;
 
     @Override
     public JedisCluster getObject() throws Exception{
@@ -51,12 +52,21 @@ public class JedisClusterUtilFactory implements FactoryBean<JedisCluster>, Initi
     @Override
     public void afterPropertiesSet() throws Exception {
         Set<HostAndPort> haps = this.parseHostAndPort();
-        poolConfig = new JedisPoolConfig();
+//        poolConfig = new JedisPoolConfig();
+//        jedisCluster = new JedisCluster(haps,
+//                (new Long(properties.getTimeout().getSeconds()).intValue())*1000,
+//                300000,
+//                ((int)properties.getCluster().getMaxRedirects()),
+//                properties.getPassword(),
+//                poolConfig
+//        );
+        GenericObjectPoolConfig<Connection> poolConfig = new GenericObjectPoolConfig<>();
         jedisCluster = new JedisCluster(haps,
                 (new Long(properties.getTimeout().getSeconds()).intValue())*1000,
                 300000,
-                ((int)properties.getCluster().getMaxRedirects()),
-                properties.getPassword(),
+                6,
+                 properties.getPassword(),
+                "",
                 poolConfig
         );
 

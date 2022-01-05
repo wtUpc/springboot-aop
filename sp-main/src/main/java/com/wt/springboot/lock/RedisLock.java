@@ -3,6 +3,7 @@ package com.wt.springboot.lock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.params.SetParams;
 
 import java.util.Collections;
 
@@ -25,7 +26,12 @@ public class RedisLock {
     public RedisLock(){}
 
     public boolean tryLock(String lockKey, String clientId, long expire){
-        String result = this.jedisCluster.set(lockKey,clientId,"NX","PX",expire);
+//        String result = this.jedisCluster.set(lockKey,clientId,"NX","PX",expire);
+        //版本升级 换种写法，待验证
+        SetParams setParams = new SetParams();
+        setParams.px(expire);
+        String result = this.jedisCluster.set(lockKey, clientId, setParams);
+
         return "OK".equals(result);
     }
 
