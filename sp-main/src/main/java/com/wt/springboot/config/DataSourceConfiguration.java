@@ -58,7 +58,7 @@ public class DataSourceConfiguration {
      *
      */
     @Lazy
-    @Resource(name = "shardingDataSource")
+    @Resource(name="shardingDataSource")
     AbstractDataSourceAdapter shardingDataSource;
 
 
